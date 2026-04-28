@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TechEvents Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+body{
+font-family: 'Poppins', sans-serif;
+margin:0;
+background:#f4f4f4;
+scroll-behavior: smooth;
+}
+
+/* HEADER */
+
+header{
+background: linear-gradient(90deg, #0a2a66, #2a5298);
+color:white;
+padding:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 10px;
+font-size:16px;
+}
+
+nav a:hover{
+color: #ffaa00;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+/* SEARCH BAR */
+
+.search-box input{
+padding:6px;
+border-radius:4px;
+border:none;
+transition: all 0.3s ease;
+}
+
+/* LOGIN BUTTONS */
+
+.auth-buttons button{
+padding:6px 10px;
+border:none;
+border-radius:4px;
+margin-left:5px;
+cursor:pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.auth-buttons button:hover{
+transform: translateY(-2px);
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.login{
+background:white;
+color:#0a2a66;
+font-weight: 600;
+}
+
+.register{
+background:orange;
+color:white;
+font-weight: 600;
+}
+
+/* HERO SECTION */
+
+.hero{
+background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
+background-size:cover;
+background-position: center;
+background-attachment: fixed;
+color:white;
+text-align:center;
+    padding: 0 20px;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom: 20px;
+animation: slideDown 1s ease-out;
+}
+
+.hero button{
+padding:12px 25px;
+font-size:16px;
+border:none;
+background:orange;
+color:white;
+border-radius:5px;
+cursor:pointer;
+transition: all 0.3s ease;
+}
+
+.hero button:hover{
+background: darkorange;
+transform: scale(1.05);
+box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+}
+
+/* EVENTS */
+
+.events{
+padding:40px;
+text-align:center;
+}
+
+.event-container{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.event-card{
+background:white;
+width:250px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover{
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.event-card h3{
+margin:10px 0;
+color: #0a2a66;
+}
+
+.event-card button{
+background:#0a2a66;
+color:white;
+border:none;
+padding:8px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* LOGIN PAGE */
+
+#login-container, #registration-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.85)), url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2001;
+    backdrop-filter: blur(5px);
+}
+
+.portal-title {
+    background: linear-gradient(to right, #ffffff, #a5c9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    animation: slideDown 1s ease-out, glow 3s infinite alternate;
+}
+
+.login-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 380px;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: popUp 0.6s ease-out;
+}
+
+.login-form h2 {
+    color: #0a2a66;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #0a2a66;
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(10, 42, 102, 0.1);
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.login-form .login-btn { 
+    background: linear-gradient(90deg, #0a2a66, #2a5298); 
+    color: white; 
+    box-shadow: 0 4px 15px rgba(10, 42, 102, 0.3);
+}
+
+.login-form .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 42, 102, 0.4);
+}
+
+.login-toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    background: #eef1f6;
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.login-toggle span {
+    padding: 10px 0;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    width: 50%;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.login-toggle span.active {
+    color: white;
+    background: #0a2a66;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* DASHBOARD */
+
+.dashboard{
+background:white;
+margin:40px;
+padding:20px;
+border-radius:10px;
+}
+
+.dashboard h2{
+color:#0a2a66;
+}
+
+/* ADMIN STATS STYLES */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+}
+.stats-table th, .stats-table td {
+    padding: 14px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+.stats-table th {
+    background: #f8f9fa;
+    color: #0a2a66;
+    font-weight: 600;
+}
+.stats-table tr:hover {
+    background: #fcfcfc;
+}
+
+/* DISCUSSION STYLES (LinkedIn Inspired) */
+.comment-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #eef1f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #0a2a66;
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+}
+
+.comment-content {
+    background: #f2f2f2;
+    padding: 12px;
+    border-radius: 0 12px 12px 12px;
+    flex: 1;
+    position: relative;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.comment-name { font-weight: 600; font-size: 14px; color: #050505; }
+.comment-role-badge { 
+    font-size: 10px; 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    background: #0a2a66; 
+    color: white; 
+    text-transform: uppercase;
+}
+.comment-time { font-size: 11px; color: #65676b; margin-left: auto; }
+.comment-text { font-size: 14px; color: #050505; line-height: 1.4; }
+
+/* CONTACT STYLES */
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+}
+
+.contact-card {
+    background: white;
+    width: 300px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: left;
+    border-top: 5px solid #0a2a66;
+}
+
+.contact-card h3 { color: #0a2a66; margin-top: 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.contact-card p { margin: 8px 0; font-size: 14px; }
+.contact-card .role { font-weight: 600; color: #2a5298; }
+.contact-card .phone { color: #555; }
+
+/* ANIMATIONS */
+#main-content {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popUp {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+    to { text-shadow: 0 0 20px rgba(255,255,255,0.6), 0 0 30px rgba(10, 42, 102, 0.4); }
+}
+
+/* POST ICONS TOOLTIP */
+.post-icon {
+    position: relative;
+}
+
+.post-icon:hover::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* --- NEW HOMEPAGE SECTIONS --- */
+
+.info-section {
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.bg-white {
+    background: #ffffff;
+}
+
+.section-title {
+    font-size: 36px;
+    color: #0a2a66;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    width: 280px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(10, 42, 102, 0.15);
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #0a2a66, #2a5298);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-icon-box {
+    width: 70px;
+    height: 70px;
+    background: #eef4ff;
+    color: #0a2a66;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 28px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon-box {
+    transform: scale(1.1) rotate(5deg);
+    background: #0a2a66;
+    color: white;
+}
+
+/* Styles for the "How it Works" cards */
+.feature-card.flat-card {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+.feature-card.flat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: none;
+}
+.flat-card .feature-icon-box {
+    background: #fff3e0;
+    color: orange;
+}
+.flat-card:hover .feature-icon-box {
+    transform: scale(1.1);
+    background: orange;
+    color: white;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+<datalist id="email-suggestions">
+<option value="pujajakkapu@gmail.com">
+<option value="24a31a0515@gmail.com">
+<option value="jyothibandhey@gmail.com">
+</datalist>
+<!-- LOGIN PAGE -->
+<div id="login-container">
+    <h1 class="portal-title">Tech Events Portal</h1>
+    <div class="login-form">
+        <div class="login-toggle">
+            <span id="tab-student" class="active" onclick="switchTab('student')">Student Login</span>
+            <span id="tab-admin" onclick="switchTab('admin')">Admin Login</span>
+        </div>
+        <h2 id="form-title">Student Portal Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <input type="email" id="email" placeholder="Email ID" required list="email-suggestions">
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" id="roleId" placeholder="Student ID" required>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- REGISTRATION MODAL -->
+<div id="registration-container" style="display: none;">
+    <div class="login-form" style="width: 400px; position: relative; max-height: 95vh; overflow-y: auto;">
+        <span onclick="closeRegistration()" style="position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 28px; font-weight: bold; color: #0a2a66; transition: color 0.3s;">&times;</span>
+        <h2 style="margin-top: 10px;">Register for <span id="reg-event-name">Event</span></h2>
+        <form onsubmit="confirmRegistration(event)">
+            <input type="text" id="reg-name" placeholder="Full Name" required style="margin-bottom: 15px;">
+            <input type="email" id="reg-email" placeholder="Email ID" required list="email-suggestions" style="margin-bottom: 15px;">
+            <input type="text" id="reg-studentId" placeholder="Student ID" required style="margin-bottom: 15px;">
+            <input type="text" id="reg-dept" placeholder="Department" required style="margin-bottom: 15px;">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="reg-year" placeholder="Year" required style="margin-bottom: 15px;">
+                <input type="text" id="reg-section" placeholder="Section" required style="margin-bottom: 15px;">
+            </div>
+            <button type="submit" class="login-btn" style="width: 100%;">Confirm Registration</button>
+        </form>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main id="main-content" style="display: none;">
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">🎓 TechEvents Portal</div>
+
+<nav>
+<a href="#" onclick="goHome()">Home</a>
+<a href="#" onclick="showUpcoming()">Upcoming Events</a>
+<a href="#" onclick="showDashboard()">Dashboard</a>
+<a href="#" onclick="showContact()">Contact</a>
+</nav>
+
+<div class="search-box">
+<input type="text" id="search-input" placeholder="Search events..." oninput="handleSearch()">
+</div>
+
+<div class="auth-buttons">
+<button class="login">👤 Student Login</button>
+<button class="register">🔑 Admin Login</button>
+</div>
+
+</header>
+
+<!-- HERO SECTION -->
+
+<div id="home-view">
+<section class="hero">
+
+<h1>College Technical Events</h1>
+<p>Participate in exciting technical events and workshops</p>
+
+<button onclick="showExplore()">Explore Events</button>
+
+</section>
+
+<!-- ABOUT / FEATURES SECTION -->
+<section class="info-section bg-white reveal">
+    <h2 class="section-title">About the Portal</h2>
+    <p class="section-subtitle">
+        TechEvents Portal is the central hub for all technical activities on campus. 
+        Designed to bridge the gap between students and opportunities, we make it effortless to host, find, and participate in events that matter.
+    </p>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon-box">📅</div>
+            <h3>Real-time Events</h3>
+            <p>Stay updated with the latest hackathons, workshops, and seminars happening across departments.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon-box">🚀</div>
+            <h3>Instant Registration</h3>
+            <p>One-click registration for students. No more paperwork—just sign up and show up.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon-box">📊</div>
+            <h3>Track Progress</h3>
+            <p>Manage all your participations in a personalized dashboard and build your technical portfolio.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="info-section reveal" style="background: #f8f9fa;">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">Get started in just a few simple steps.</p>
+    
+    <div class="features-grid">
+        <div class="feature-card flat-card">
+            <div class="feature-icon-box">1</div>
+            <h3>Login</h3>
+            <p>Access the portal using your student or admin credentials.</p>
+        </div>
+
+        <div class="feature-card flat-card">
+            <div class="feature-icon-box">2</div>
+            <h3>Explore</h3>
+            <p>Browse through various categories like Coding, Seminars, and more.</p>
+        </div>
+
+        <div class="feature-card flat-card">
+            <div class="feature-icon-box">3</div>
+            <h3>Register</h3>
+            <p>Click on events that interest you and secure your spot instantly.</p>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<!-- UPCOMING EVENTS VIEW -->
+<div id="upcoming-view" style="display: none;">
+<section class="events">
+
+<h2 style="margin-bottom: 30px;">Closing Soon: Register Now!</h2>
+
+<div class="event-container" id="upcoming-events-container">
+    <!-- Upcoming events will be dynamically inserted here -->
+    <p>Loading upcoming events...</p>
+</div>
+
+</section>
+</div>
+
+<!-- EXPLORE VIEW -->
+<div id="explore-view" style="display: none; padding: 100px 20px; text-align: center;">
+    <h2 style="color: #0a2a66; margin-bottom: 20px;">Browse Event Categories</h2>
+    <p style="margin-bottom: 30px; font-size: 18px;">Select a category to find events that interest you.</p>
+    
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 30px;">
+        <select id="category-select" onchange="handleCategorySelect()" style="padding: 12px 20px; width: 300px; border-radius: 5px; border: 2px solid #0a2a66; font-size: 16px; outline: none; background: white;">
+            <option>Select Category</option>
+            <option>Coding Contest</option>
+            <option>Hackathon</option>
+            <option>Workshop</option>
+            <option>Seminar</option>
+            <option>Internship</option>
+        </select>
+        <button id="create-post-trigger" onclick="togglePostBox()" style="display: none; background: #0a2a66; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.15);" title="Create Post">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+    </div>
+
+    <div id="category-events-display" class="event-container" style="margin-bottom: 40px;"></div>
+
+    <!-- FULL SCREEN POST UI -->
+    <div id="post-event-ui" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; font-family: 'Poppins', sans-serif; overflow-y: auto;">
+        <!-- Hidden File Inputs -->
+        <input type="file" id="media-input" accept="image/*" style="display: none;" onchange="handleFileSelection(this, 'Media')">
+        <input type="file" id="doc-input" accept=".pdf,.doc,.docx,.txt" style="display: none;" onchange="handleFileSelection(this, 'Document')">
+
+        <div id="post-main-container" style="max-width: 1000px; margin: 40px auto; padding: 20px; display: flex; gap: 30px; transition: all 0.3s ease;">
+            <!-- Left Side: Post Creation (Always Visible) -->
+            <div style="flex: 1; min-width: 300px;">
+            <!-- Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #eee; margin-bottom: 30px;">
+                <h2 style="margin: 0; color: #0a2a66; font-size: 24px;">Create New Event Post</h2>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                    <span class="post-icon" data-name="Manage Posts" onclick="showEventList()" style="cursor: pointer; display: flex; align-items: center; justify-content: center; background: #f0f2f5; width: 40px; height: 40px; border-radius: 50%; color: #65676b;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </span>
+                    <button onclick="togglePostBox()" style="background: #f0f2f5; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #65676b;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Body -->
+            <div id="event-form-view" style="background: white; padding: 10px;">
+                <div style="display: flex; align-items: center; margin-bottom: 25px;">
+                    <div style="width: 50px; height: 50px; border-radius: 50%; background: #f0f2f5; display: flex; align-items: center; justify-content: center;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#65676b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div style="margin-left: 15px;">
+                        <div style="font-weight: 600; color: #050505; font-size: 16px;">Administrator</div>
+                        <div style="font-size: 12px; color: #65676b;">Posting to Public Feed</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px;">
+                    <input type="text" id="post-event-name" placeholder="Event Name (e.g. Cyber Hack)" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins'; outline: none;">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="post-event-date" placeholder="Event Date" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins'; outline: none;">
+                        <input type="text" id="post-event-dept" placeholder="Department" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins'; outline: none;">
+                    </div>
+                    <input type="text" id="post-event-reg-end" placeholder="Registration Deadline" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Poppins'; outline: none;">
+                    
+                    <div style="border: 1px solid #eee; border-radius: 8px; padding: 10px; background: #fdfdfd;">
+                        <textarea id="post-textarea" placeholder="Additional Details / Description..." style="width: 100%; border: none; font-size: 15px; font-family: 'Poppins', sans-serif; outline: none; resize: vertical; min-height: 80px; background: transparent;"></textarea>
+                        <div id="post-preview-container" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; border-top: 1px solid #f0f2f5; padding-top: 10px;"></div>
+                    </div>
+                </div>
+                
+                <!-- Add to post tools -->
+                <div style="border: 1px solid #ced0d4; border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <span style="font-weight: 600; font-size: 15px; color: #050505;">Enhance your post</span>
+                    <div style="display: flex; gap: 20px;">
+                        <span class="post-icon" data-name="Add Media" onclick="document.getElementById('media-input').click()" style="cursor: pointer; display: flex; align-items: center;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#45bd62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                        </span>
+                        <span class="post-icon" data-name="Attach Document" onclick="document.getElementById('doc-input').click()" style="cursor: pointer; display: flex; align-items: center;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#65676b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                        </span>
+                        <span class="post-icon" data-name="Toggle Discussion" onclick="toggleComments()" style="cursor: pointer; display: flex; align-items: center;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1877f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <button id="publish-btn" onclick="publishEvent()" style="width: 100%; background: #0a2a66; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 600; font-size: 18px; cursor: pointer; transition: background 0.2s;">Publish Event</button>
+            </div>
+
+            <!-- MANAGEMENT LIST VIEW -->
+            <div id="event-list-view" style="display: none; background: white; padding: 10px;">
+                <h3 style="margin: 0 0 20px 0; color: #0a2a66;">Manage Published Events</h3>
+                <div id="event-management-list" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #f0f0f0; border-radius: 8px; padding: 10px;"></div>
+                <button onclick="backToForm()" style="width: 100%; background: #f0f2f5; color: #65676b; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer;">Back to Create Post</button>
+            </div>
+            </div>
+
+            <!-- Right Side: Chat Session (Conditional) -->
+            <div id="comment-sidebar" style="display: none; width: 400px; border-left: 1px solid #eee; padding-left: 20px; flex-direction: column; height: 650px; background: white; border-radius: 12px; padding: 15px; box-shadow: -5px 0 15px rgba(0,0,0,0.05);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <h3 style="font-size: 18px; color: #0a2a66; margin: 0;">Post Discussion</h3>
+                    <span id="active-discussion-event" style="font-size: 12px; color: #65676b; font-weight: 600;"></span>
+                </div>
+                
+                <div id="chat-messages" style="flex: 1; overflow-y: auto; padding: 10px 0; display: flex; flex-direction: column;"></div>
+                
+                <div style="display: flex; gap: 8px; padding-top: 15px; border-top: 1px solid #eee;">
+                    <input type="text" id="chat-input" placeholder="Add a comment..." style="flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 20px; outline: none; font-family: 'Poppins'; font-size: 14px;">
+                    <button onclick="postComment()" style="background: #0a2a66; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-weight: 600; transition: background 0.2s;">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <button onclick="goHome()" style="padding: 10px 25px; background: orange; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Back to Home</button>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<div id="dashboard-view" style="display: none;">
+<section class="dashboard" style="text-align: left;">
+
+<div id="student-dashboard">
+    <h2 style="border-bottom: 2px solid #f0f2f5; padding-bottom: 10px;">My Registered Events</h2>
+    <ul id="registeredEvents" style="list-style: none; padding: 0;">
+        <li style="color: #666; padding: 20px; background: #f9f9f9; border-radius: 8px;">No events registered yet</li>
+    </ul>
+</div>
+
+<div id="admin-dashboard" style="display: none;">
+    <h2 style="color: #0a2a66; margin-bottom: 5px;">Registration Analytics</h2>
+    <p style="color: #666; font-size: 14px; margin-bottom: 25px;">Real-time breakdown of student participation across all key departments.</p>
+    
+    <div id="admin-stats-container" style="overflow-x: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-radius: 8px;">
+        <!-- Stats Table Injected Here -->
+    </div>
+</div>
+
+<button onclick="goHome()" style="margin-top: 20px; padding: 10px 25px; background: orange; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Back to Home</button>
+</section>
+</div>
+
+</main>
+
+<!-- SEARCH VIEW -->
+<div id="search-view" style="display: none; padding: 40px;">
+    <h2 id="search-title" style="text-align: center; color: #0a2a66; margin-bottom: 30px;">Search Results</h2>
+    <div id="search-results-container" class="event-container"></div>
+    <div style="text-align: center; margin-top: 40px;">
+        <button onclick="goHome()" style="padding: 10px 25px; background: orange; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Back to Home</button>
+    </div>
+</div>
+
+<!-- CONTACT VIEW -->
+<div id="contact-view" style="display: none; padding: 60px 20px; background: #f8f9fa;">
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h2 class="section-title">Department Contacts</h2>
+        <p class="section-subtitle">Reach out to Department Heads or Event Coordinators for specific inquiries.</p>
+    </div>
+
+    <div class="contact-grid">
+        <!-- CSE -->
+        <div class="contact-card">
+            <h3>Computer Science (CSE)</h3>
+            <p><span class="role">HOD:</span> Dr. Sarah Jenkins</p>
+            <p class="phone">📞 +91 98765 43210</p>
+            <p><span class="role">Event Coordinator:</span> Prof. Michael Ross</p>
+            <p class="phone">📞 +91 98765 43211</p>
+            <p>📧 cse.events@techevents.edu</p>
+        </div>
+
+        <!-- IT -->
+        <div class="contact-card">
+            <h3>Information Tech (IT)</h3>
+            <p><span class="role">HOD:</span> Dr. Robert Vance</p>
+            <p class="phone">📞 +91 98765 43220</p>
+            <p><span class="role">Event Coordinator:</span> Prof. Anita Desai</p>
+            <p class="phone">📞 +91 98765 43221</p>
+            <p>📧 it.office@techevents.edu</p>
+        </div>
+
+        <!-- ECE -->
+        <div class="contact-card">
+            <h3>Electronics (ECE)</h3>
+            <p><span class="role">HOD:</span> Dr. James Wilson</p>
+            <p class="phone">📞 +91 98765 43230</p>
+            <p><span class="role">Event Coordinator:</span> Prof. David Geller</p>
+            <p class="phone">📞 +91 98765 43231</p>
+            <p>📧 ece.dept@techevents.edu</p>
+        </div>
+
+        <!-- CSM -->
+        <div class="contact-card">
+            <h3>AI & ML (CSM)</h3>
+            <p><span class="role">HOD:</span> Dr. Elena Gilbert</p>
+            <p class="phone">📞 +91 98765 43240</p>
+            <p><span class="role">Event Coordinator:</span> Prof. Stefan Salvat</p>
+            <p class="phone">📞 +91 98765 43241</p>
+            <p>📧 csm.labs@techevents.edu</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <button onclick="goHome()" style="padding: 10px 25px; background: orange; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Back to Home</button>
+    </div>
+</div>
+
+<style>
+/* Reusable helper for search results styling */
+.no-results {
+    text-align: center;
+    width: 100%;
+    padding: 50px;
+    font-size: 20px;
+    color: #666;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.no-results span {
+    display: block;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+</style>
+
+<script>
+
+let loggedInUser = null;
+let registeredList = document.getElementById("registeredEvents");
+let currentEventName = "";
+let currentEventDate = "";
+let currentEventDept = "";
+let editingRef = null;
+let currentDiscussionEvent = "";
+const eventRegistrations = {}; // Store: { "Event Name": [ {name: '...', dept: '...'}, ... ] }
+const targetDepts = ["CSE", "DS", "AIML", "CAI", "ECE", "IT", "CS", "MECH"];
+const registrationContainer = document.getElementById("registration-container");
+const eventComments = {}; // Stores arrays of comments keyed by event name
+
+// Global store for events
+let allEvents = {
+    "Coding Contest": [
+        {n:"Code Blitz", d:"May 5", dep:"CSE", regEndDate:"May 1", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=250&fit=crop"},
+        {n:"Algo-Master", d:"May 12", dep:"IT", regEndDate:"May 8", img: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=400&h=250&fit=crop"}
+    ],
+    "Hackathon": [
+        {n:"Eco-Hack 2024", d:"June 1", dep:"ECE", regEndDate:"May 25", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=250&fit=crop"}
+    ],
+    "Workshop": [
+        {n:"React Fundamentals", d:"April 20", dep:"CSE", regEndDate:"April 15", img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop"}
+    ],
+    "Seminar": [
+        {n:"Cyber Security 101", d:"May 18", dep:"CSM", regEndDate:"May 14", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&h=250&fit=crop"}
+    ],
+    "Internship": [
+        {n:"Cloud Intern Program", d:"June 15", dep:"IT", regEndDate:"June 5", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop"}
+    ]
+};
+
+function hideAllViews() {
+    const views = ["home-view", "dashboard-view", "upcoming-view", "explore-view", "contact-view", "search-view"];
+    views.forEach(view => {
+        const el = document.getElementById(view);
+        if(el) el.style.display = "none";
+    });
+}
+
+function showExplore() {
+    hideAllViews();
+    document.getElementById("explore-view").style.display = "block";
+}
+
+function showDashboard() {
+    hideAllViews();
+    document.getElementById("dashboard-view").style.display = "block";
+    
+    if (loggedInUser && loggedInUser.role === 'admin') {
+        document.getElementById("admin-dashboard").style.display = "block";
+        document.getElementById("student-dashboard").style.display = "none";
+        renderAdminDashboard();
+    } else {
+        document.getElementById("admin-dashboard").style.display = "none";
+        document.getElementById("student-dashboard").style.display = "block";
+    }
+}
+
+function showUpcoming() {
+    hideAllViews();
+    document.getElementById("upcoming-view").style.display = "block";
+}
+
+function showContact() {
+    hideAllViews();
+    document.getElementById("contact-view").style.display = "block";
+}
+
+function goHome() {
+    hideAllViews();
+    document.getElementById("home-view").style.display = "block";
+    document.getElementById("search-input").value = "";
+}
+
+function handleSearch() {
+    const query = document.getElementById("search-input").value.trim().toLowerCase();
+    const container = document.getElementById("search-results-container");
+    
+    if (query === "") {
+        goHome();
+        return;
+    }
+
+    hideAllViews();
+    document.getElementById("search-view").style.display = "block";
+
+    // Flatten all events from all categories into one array
+    const allEventsFlat = Object.values(allEvents).flat();
+    
+    // Filter based on event name
+    const filtered = allEventsFlat.filter(event => 
+        event.n.toLowerCase().includes(query)
+    );
+
+    if (filtered.length > 0) {
+        container.innerHTML = filtered.map(ev => `
+            <div class="event-card" style="text-align: left;">
+                ${ev.img ? `<img src="${ev.img}" style="width: calc(100% + 30px); margin: -15px -15px 15px -15px; height: 120px; object-fit: cover;">` : ''}
+                <h3 style="margin-top: 0;">${ev.n}</h3>
+                <p style="font-size: 14px; color: #555; margin: 5px 0;">Dept: ${ev.dep}</p>
+                <p style="font-size: 14px; color: #555; margin: 5px 0;">Date: ${ev.d}</p>
+                ${ev.regEndDate ? `<p style="font-size: 13px; color: #d9534f; margin: 5px 0;"><strong>Registration Deadline:</strong> ${ev.regEndDate}</p>` : ''}
+                <button onclick="registerEvent('${ev.n}', '${ev.d}', '${ev.dep}')" style="width: 100%; margin-top: 10px;">Register</button>
+            </div>
+        `).join('');
+    } else {
+        container.innerHTML = `
+            <div class="no-results">
+                <span>🔍</span>
+                <h3>Event not found</h3>
+                <p>We couldn't find any events matching "${query}".</p>
+            </div>
+        `;
+    }
+}
+
+function registerEvent(eventName, eventDate, eventDept){
+    currentEventName = eventName;
+    currentEventDate = eventDate;
+    currentEventDept = eventDept;
+    document.getElementById("reg-event-name").innerText = eventName;
+    registrationContainer.style.display = "flex";
+}
+
+function closeRegistration() {
+    registrationContainer.style.display = "none";
+}
+
+function confirmRegistration(event) {
+    event.preventDefault();
+
+    // Remove placeholder text if it exists
+    if(registeredList.children.length > 0 && registeredList.children[0].innerText === "No events registered yet"){
+        registeredList.innerHTML = "";
+    }
+
+    let li = document.createElement("li");
+    li.innerHTML = `<strong>${currentEventName}</strong> <br> <span style="font-size: 14px; color: #555;">Date: ${currentEventDate}</span> <br> <span style="font-size: 14px; color: #555;">Dept: ${currentEventDept}</span><br><br>`;
+
+    registeredList.appendChild(li);
+
+    // --- Logic for Admin Analytics: Only count Student registrations ---
+    if (loggedInUser && loggedInUser.role === 'student') {
+        const deptInput = document.getElementById("reg-dept").value.trim().toUpperCase();
+        if (!eventRegistrations[currentEventName]) {
+            eventRegistrations[currentEventName] = [];
+        }
+        eventRegistrations[currentEventName].push({
+            name: document.getElementById("reg-name").value,
+            dept: deptInput
+        });
+    }
+
+    alert("Successfully Registered for " + currentEventName);
+    
+    // Clear form and close
+    event.target.reset();
+    closeRegistration();
+}
+
+// --- Login Page Logic ---
+
+const loginContainer = document.getElementById("login-container");
+const mainContent = document.getElementById("main-content");
+
+let currentRole = 'student';
+
+function switchTab(role) {
+    currentRole = role;
+    // Reset fields
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("roleId").value = "";
+
+    if (role === 'student') {
+        document.getElementById("tab-student").classList.add("active");
+        document.getElementById("tab-admin").classList.remove("active");
+        document.getElementById("form-title").innerText = "Student Login";
+        document.getElementById("roleId").placeholder = "Student ID";
+    } else {
+        document.getElementById("tab-student").classList.remove("active");
+        document.getElementById("tab-admin").classList.add("active");
+        document.getElementById("form-title").innerText = "Admin Login";
+        document.getElementById("roleId").placeholder = "Faculty ID";
+    }
+}
+
+function handleLogin(event) {
+    event.preventDefault(); // Prevents the form from reloading the page
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const roleId = document.getElementById("roleId").value;
+
+    loggedInUser = {
+        id: roleId,
+        email: email,
+        role: currentRole // 'student' or 'admin'
+    };
+
+    // Basic validation: In a real app, you'd check these against a database.
+    if (email && password && roleId) {
+        loginContainer.style.display = "none";
+        mainContent.style.display = "block";
+
+        displayUpcomingEvents();
+
+        // Replace Login/Register buttons with User Profile in header
+        const authButtons = document.querySelector(".auth-buttons");
+        const icon = currentRole === 'student' ? '👤' : '🔑';
+        authButtons.innerHTML = `
+            <div style="position: relative;">
+                <button class="login" onclick="toggleLogoutMenu()">${icon} ${roleId}</button>
+                <div id="logout-menu" style="display: none; position: absolute; top: 100%; right: 0; background: white; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1001; min-width: 120px;">
+                    <button onclick="handleLogout()" style="background: white; color: #d9534f; width: 100%; text-align: left; padding: 10px; border: none; border-radius: 0; font-weight: bold;">Logout</button>
+                </div>
+            </div>`;
+    } else {
+        alert("Please fill out all fields.");
+    }
+}
+
+function toggleLogoutMenu() {
+    const menu = document.getElementById("logout-menu");
+    menu.style.display = menu.style.display === "none" ? "block" : "none";
+}
+
+function handleLogout() {
+    document.getElementById("main-content").style.display = "none";
+    document.getElementById("login-container").style.display = "flex";
+    // Clear inputs
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("roleId").value = "";
+    loggedInUser = null;
+    goHome();
+}
+
+function displayUpcomingEvents() {
+    const container = document.getElementById("upcoming-events-container");
+    if (!container) return;
+
+    const allEventsFlat = Object.values(allEvents).flat();
+    const currentYear = new Date().getFullYear();
+    const now = new Date();
+
+    const upcoming = allEventsFlat
+        .filter(event => event.regEndDate)
+        .map(event => {
+            const endDate = new Date(`${event.regEndDate} ${currentYear} 23:59:59`);
+            return { ...event, endDate };
+        })
+        .filter(event => event.endDate > now)
+        .sort((a, b) => a.endDate - b.endDate);
+
+    if (upcoming.length === 0) {
+        container.innerHTML = "<p style='color: #666;'>No event registrations are closing soon.</p>";
+        return;
+    }
+
+    container.innerHTML = upcoming.slice(0, 4).map(event => {
+        const endDateISO = event.endDate.toISOString();
+        return `
+            <div class="event-card" style="text-align: left;">
+                ${event.img ? `<img src="${event.img}" style="width: calc(100% + 30px); margin: -15px -15px 15px -15px; height: 120px; object-fit: cover;">` : ''}
+                <h3 style="margin-top: 0;">${event.n}</h3>
+                <p style="font-size: 14px; color: #555; margin: 5px 0;">Dept: ${event.dep}</p>
+                <p style="font-size: 13px; color: #666; margin: 5px 0;">Ends: <strong>${event.regEndDate}</strong></p>
+                <div style="background: #fff3e0; border-left: 3px solid #ff9800; padding: 8px; margin: 15px 0; border-radius: 4px;">
+                    <p style="margin: 0; font-size: 13px; color: #e65100; font-weight: 600;">Closes in:</p>
+                    <p class="countdown" data-reg-end="${endDateISO}" style="margin: 4px 0 0 0; font-size: 16px; font-weight: bold; color: #d9534f;"></p>
+                </div>
+                <button onclick="registerEvent('${event.n}', '${event.d}', '${event.dep}')" style="width: 100%;">Register</button>
+            </div>
+        `;
+    }).join('');
+
+    updateCountdowns();
+    if (window.countdownInterval) clearInterval(window.countdownInterval);
+    window.countdownInterval = setInterval(updateCountdowns, 1000);
+}
+
+function updateCountdowns() {
+    const countdownElements = document.querySelectorAll('#upcoming-events-container .countdown');
+    const now = new Date().getTime();
+
+    countdownElements.forEach(el => {
+        const endDate = new Date(el.getAttribute('data-reg-end')).getTime();
+        const distance = endDate - now;
+
+        if (distance < 0) {
+            el.innerHTML = "Registration Closed";
+            const card = el.closest('.event-card');
+            if (card) {
+                const button = card.querySelector('button');
+                if(button) {
+                    button.disabled = true;
+                    button.style.background = '#ccc';
+                    button.innerText = "Closed";
+                }
+            }
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        let countdownText = '';
+        if (days > 0) countdownText += `${days}d `;
+        countdownText += `${String(hours).padStart(2, '0')}h `;
+        countdownText += `${String(minutes).padStart(2, '0')}m `;
+        countdownText += `${String(seconds).padStart(2, '0')}s`;
+
+        el.innerHTML = countdownText.trim();
+    });
+}
+
+function handleCategorySelect() {
+    const select = document.getElementById("category-select");
+    const postUI = document.getElementById("post-event-ui");
+    const trigger = document.getElementById("create-post-trigger");
+    const display = document.getElementById("category-events-display");
+
+    if(select.value !== "Select Category"){
+        trigger.style.display = "flex";
+        postUI.style.display = "none";
+
+        const category = select.value;
+        const events = allEvents[category] || [];
+        display.innerHTML = events.map(ev => `
+            <div class="event-card" style="padding: 15px; display: flex; flex-direction: column; overflow: hidden; text-align: left;">
+                ${ev.img ? `<img src="${ev.img}" style="width: calc(100% + 30px); margin: -15px -15px 15px -15px; height: auto; max-height: 300px; object-fit: contain; background: #f8f9fa; border-bottom: 1px solid #eee;">` : ''}
+                <div style="margin-top: 10px; flex-grow: 1;">
+                    <h3 style="margin: 0 0 5px 0; color: #0a2a66;">${ev.n}</h3>
+                    <p style="margin: 0; font-size: 14px; color: #555;"><strong>Date:</strong> ${ev.d}</p>
+                    <p style="margin: 0; font-size: 14px; color: #555;"><strong>Dept:</strong> ${ev.dep}</p>
+                    ${ev.regEndDate ? `<p style="margin: 5px 0 0 0; font-size: 14px; color: #d9534f;"><strong>Register By:</strong> ${ev.regEndDate}</p>` : ''}
+                    ${ev.content ? `<div style="white-space: pre-wrap; color: #444; font-size: 13px; line-height: 1.5; margin-top: 10px; border-top: 1px solid #f0f2f5; padding-top: 8px;">${ev.content}</div>` : ''}
+                </div>
+                <div style="display: flex; gap: 8px; margin-top: 15px;">
+                    <button onclick="registerEvent('${ev.n}', '${ev.d}', '${ev.dep}')" style="flex: 2;">Register</button>
+                    <button onclick="openDiscussion('${ev.n}')" style="flex: 1; background: #f0f2f5; color: #65676b; border: 1px solid #ddd;">💬 Chat</button>
+                </div>
+           </div>
+        `).join('');
+
+        if(events.length === 0) display.innerHTML = "<p style='color: #666;'>No events found for this category.</p>";
+    } else {
+        trigger.style.display = "none";
+        postUI.style.display = "none";
+        display.innerHTML = "";
+    }
+}
+
+function publishEvent() {
+    const select = document.getElementById("category-select");
+    const category = select.value;
+
+    const name = document.getElementById("post-event-name").value.trim();
+    const date = document.getElementById("post-event-date").value.trim();
+    const dept = document.getElementById("post-event-dept").value.trim();
+    const regEnd = document.getElementById("post-event-reg-end").value.trim();
+    const content = document.getElementById("post-textarea").value.trim();
+
+    if (!name || !date || !dept) {
+        alert("Please fill in the Name, Date, and Department.");
+        return;
+    }
+
+    // Get the first image from the preview container if available
+    const previewContainer = document.getElementById("post-preview-container");
+    const firstImg = previewContainer.querySelector('img');
+
+    const newEvent = {
+        n: name,
+        d: date,
+        dep: dept,
+        regEndDate: regEnd,
+        content: content,
+        img: firstImg ? firstImg.src : null
+    };
+
+    if (editingRef) {
+        // If editing, remove old entry and add new (handles category changes)
+        allEvents[editingRef.category].splice(editingRef.index, 1);
+        if (!allEvents[category]) allEvents[category] = [];
+        allEvents[category].unshift(newEvent);
+        alert("Event updated successfully!");
+    } else {
+        // Add to the global store for that specific category
+        if (!allEvents[category]) allEvents[category] = [];
+        allEvents[category].unshift(newEvent);
+        alert("Event published successfully to " + category + "!");
+    }
+
+    // Refresh UI
+    handleCategorySelect();
+
+    togglePostBox();
+}
+
+function togglePostBox() {
+    const postUI = document.getElementById("post-event-ui");
+    const isHidden = postUI.style.display === "none" || postUI.style.display === "";
+    postUI.style.display = isHidden ? "block" : "none";
+    document.body.style.overflow = isHidden ? "hidden" : "auto";
+
+    if (isHidden) {
+        // Reset to default state when opening
+        document.getElementById("event-form-view").style.display = "block";
+        document.getElementById("event-list-view").style.display = "none";
+        document.getElementById("publish-btn").innerText = "Publish Event";
+        editingRef = null;
+        
+        // Clear inputs
+        document.getElementById("post-event-name").value = "";
+        document.getElementById("post-event-date").value = "";
+        document.getElementById("post-event-dept").value = "";
+        document.getElementById("post-event-reg-end").value = "";
+        document.getElementById("post-textarea").value = "";
+        document.getElementById("post-preview-container").innerHTML = "";
+    }
+}
+
+function showEventList() {
+    document.getElementById("event-form-view").style.display = "none";
+    document.getElementById("event-list-view").style.display = "block";
+    const listContainer = document.getElementById("event-management-list");
+    
+    let html = "";
+    for (let category in allEvents) {
+        allEvents[category].forEach((ev, index) => {
+            html += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; border: 1px solid #eee; margin-bottom: 10px; border-radius: 8px; background: #fafafa;">
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; color: #0a2a66; font-size: 14px;">${ev.n}</div>
+                        <div style="font-size: 11px; color: #666;">Category: ${category} | Dept: ${ev.dep}</div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="editEvent('${category}', ${index})" style="background: #e7f3ff; color: #1877f2; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600;">Edit Event</button>
+                        <button onclick="deleteEvent('${category}', ${index})" style="background: #ffebe9; color: #d9534f; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 600;">Delete Event</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+    listContainer.innerHTML = html || "<p style='color: #666; font-size: 14px; text-align: center; padding: 20px;'>No events found to manage.</p>";
+}
+
+function backToForm() {
+    document.getElementById("event-form-view").style.display = "block";
+    document.getElementById("event-list-view").style.display = "none";
+}
+
+function deleteEvent(cat, idx) {
+    if (confirm("Are you sure you want to delete this event?")) {
+        allEvents[cat].splice(idx, 1);
+        showEventList();
+        handleCategorySelect(); // Refresh background category view
+    }
+}
+
+function editEvent(cat, idx) {
+    const ev = allEvents[cat][idx];
+    editingRef = { category: cat, index: idx };
+
+    // Pre-fill the form
+    document.getElementById("post-event-name").value = ev.n;
+    document.getElementById("post-event-date").value = ev.d;
+    document.getElementById("post-event-dept").value = ev.dep;
+    document.getElementById("post-event-reg-end").value = ev.regEndDate || "";
+    document.getElementById("post-textarea").value = ev.content || "";
+    document.getElementById("category-select").value = cat;
+
+    // Restore Image Preview if it exists
+    const previewContainer = document.getElementById("post-preview-container");
+    previewContainer.innerHTML = "";
+    if (ev.img) {
+        const wrapper = document.createElement('div');
+        wrapper.style.cssText = 'position:relative; width:110px; height:110px; border:1px solid #ddd; border-radius:8px; overflow:hidden; background:#f8f9fa;';
+        const img = document.createElement('img');
+        img.src = ev.img;
+        img.style.cssText = 'width:100%; height:100%; object-fit:cover;';
+        wrapper.appendChild(img);
+        const removeBtn = document.createElement('div');
+        removeBtn.innerHTML = '&times;';
+        removeBtn.style.cssText = 'position:absolute; top:4px; right:4px; background:rgba(0,0,0,0.5); color:white; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; line-height:1;';
+        removeBtn.onclick = () => wrapper.remove();
+        wrapper.appendChild(removeBtn);
+        previewContainer.appendChild(wrapper);
+    }
+
+    document.getElementById("publish-btn").innerText = "Update Event";
+    backToForm();
+}
+
+function handleFileSelection(input, type) {
+    const previewContainer = document.getElementById('post-preview-container');
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const wrapper = document.createElement('div');
+            wrapper.style.position = 'relative';
+            wrapper.style.width = '110px';
+            wrapper.style.height = '110px';
+            wrapper.style.border = '1px solid #ddd';
+            wrapper.style.borderRadius = '8px';
+            wrapper.style.overflow = 'hidden';
+            wrapper.style.backgroundColor = '#f8f9fa';
+
+            if (type === 'Media') {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                wrapper.appendChild(img);
+            } else {
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.justifyContent = 'center';
+                wrapper.style.padding = '8px';
+                wrapper.innerHTML = `
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#65676b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                    <span style="font-size: 10px; color: #65676b; text-align: center; margin-top: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 90%;">${file.name}</span>
+                `;
+            }
+
+            const removeBtn = document.createElement('div');
+            removeBtn.innerHTML = '&times;';
+            removeBtn.style.cssText = 'position:absolute; top:4px; right:4px; background:rgba(0,0,0,0.5); color:white; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; line-height:1;';
+            removeBtn.onclick = () => wrapper.remove();
+            wrapper.appendChild(removeBtn);
+            previewContainer.appendChild(wrapper);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function openDiscussion(eventName) {
+    currentDiscussionEvent = eventName;
+    togglePostBox(); // Open the full-screen UI
+    document.getElementById("event-form-view").style.display = loggedInUser.role === 'admin' ? "block" : "none";
+    const sidebar = document.getElementById("comment-sidebar");
+    sidebar.style.display = "flex";
+    document.getElementById("active-discussion-event").innerText = "Event: " + eventName;
+    renderComments();
+}
+
+function toggleComments() {
+    // This is the trigger from the "Enhance Post" tool in Admin View
+    const sidebar = document.getElementById("comment-sidebar");
+    const eventNameInput = document.getElementById("post-event-name").value;
+    
+    if (sidebar.style.display === "none") {
+        currentDiscussionEvent = eventNameInput || "New Event";
+        sidebar.style.display = "flex";
+        document.getElementById("active-discussion-event").innerText = "Preview Discussion";
+        renderComments();
+    } else {
+        sidebar.style.display = "none";
+    }
+}
+
+function renderComments() {
+    const container = document.getElementById("chat-messages");
+    const comments = eventComments[currentDiscussionEvent] || [];
+    
+    if (comments.length === 0) {
+        container.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px; color: #65676b;">
+                <div style="font-size: 40px; margin-bottom: 10px;">💬</div>
+                <p style="font-size: 14px; margin: 0;">No comments yet. Be the first to start the discussion!</p>
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = comments.map(c => `
+        <div class="comment-item">
+            <div class="comment-avatar">${c.userName.charAt(0)}</div>
+            <div class="comment-content">
+                <div class="comment-header">
+                    <span class="comment-name">${c.userName}</span>
+                    ${c.role === 'admin' ? '<span class="comment-role-badge">Admin</span>' : ''}
+                    <span class="comment-time">${c.time}</span>
+                </div>
+                <div class="comment-text">${c.text}</div>
+            </div>
+        </div>
+    `).join('');
+    container.scrollTop = container.scrollHeight;
+}
+
+function postComment() {
+    const input = document.getElementById("chat-input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    if (!eventComments[currentDiscussionEvent]) eventComments[currentDiscussionEvent] = [];
+    
+    eventComments[currentDiscussionEvent].push({
+        userName: loggedInUser.id,
+        role: loggedInUser.role,
+        text: text,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    });
+
+    input.value = "";
+    renderComments();
+}
+
+function renderAdminDashboard() {
+    const container = document.getElementById("admin-stats-container");
+    // Flatten all events from global store to iterate through them
+    const allEventsFlat = [];
+    for (let category in allEvents) {
+        allEvents[category].forEach(ev => {
+            allEventsFlat.push({ ...ev, category: category });
+        });
+    }
+
+    let tableHtml = `
+        <table class="stats-table">
+            <thead>
+                <tr>
+                    <th style="text-align: left;">Event Name</th>
+                    <th>Category</th>
+                    ${targetDepts.map(d => `<th>${d}</th>`).join('')}
+                    <th style="background: #0a2a66; color: white;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    allEventsFlat.forEach(ev => {
+        const registrations = eventRegistrations[ev.n] || [];
+        const counts = {};
+        targetDepts.forEach(d => counts[d] = 0);
+        
+        registrations.forEach(reg => {
+            if (counts.hasOwnProperty(reg.dept)) counts[reg.dept]++;
+        });
+
+        tableHtml += `
+            <tr>
+                <td style="text-align: left; font-weight: 600; color: #0a2a66;">${ev.n}</td>
+                <td><span style="font-size: 11px; background: #f0f2f5; padding: 3px 8px; border-radius: 4px;">${ev.category}</span></td>
+                ${targetDepts.map(d => {
+                    const count = counts[d];
+                    return `<td style="${count > 0 ? 'font-weight: bold; color: #2a5298;' : 'color: #bbb;'}">
+                        ${count > 0 ? count : 'No one'}
+                    </td>`;
+                }).join('')}
+                <td style="font-weight: 800; color: #0a2a66; background: #f8f9fa;">${registrations.length}</td>
+            </tr>
+        `;
+    });
+
+    tableHtml += `</tbody></table>`;
+    container.innerHTML = tableHtml || "<p style='padding: 20px;'>No events available for analysis.</p>";
+}
+
+// Scroll Animation Observer
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+
+</script>
+
+</body>
+</html>
